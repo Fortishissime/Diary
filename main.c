@@ -2,6 +2,12 @@
 #include "struc.c"
 #include <time.h>
 #include "timer.h" // Assurez-vous d'avoir un module timer fonctionnel
+#include "menu.h"
+#define MAX_SIZE 50
+
+
+
+/*
 int main() {
     const int numLevels = 5;
     const int maxValue = 100000;
@@ -37,4 +43,12 @@ int main() {
     }
 
     return 0;
+}
+ */
+
+int main(){
+    t_std_list *tab_test = scanString();
+    printf(tab_test);
+    printf("test");
+    return 1;
 }

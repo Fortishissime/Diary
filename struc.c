@@ -3,7 +3,7 @@
 #include "struc.h"
 #include <time.h>
 #include "timer.h"
-
+/*
 // Fonction pour créer une cellule
 t_d_cell *createCell(int value) {
     t_d_cell *newCell = (t_d_cell *)malloc(sizeof(t_d_cell));
@@ -104,3 +104,16 @@ t_d_cell *searchMultiLevel(t_d_list list, int value) {
     return NULL;
 }
 
+*/
+
+p_cell createCell(char n)
+{
+    p_cell p_res;
+
+    p_res = (p_cell) malloc(sizeof(t_cell));
+
+    p_res->value = val;
+    p_res->next = NULL;
+
+    return p_res;
+}

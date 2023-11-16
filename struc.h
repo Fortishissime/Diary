@@ -1,13 +1,18 @@
-typedef struct s_d_cell {
+
+#ifndef UNTITLED_STRUC_H
+#define UNTITLED_STRUC_H
+
+struct s_cell
+{
     int value;
-    struct s_d_cell *next_0;
-    struct s_d_cell *next_1;
-} t_d_cell;
+    struct s_cell *next;
+};
 
-// Structure de la liste à deux niveaux
-typedef struct s_d_list {
-    t_d_cell *head_0;
-    t_d_cell *head_1;
-} t_d_list;
+typedef struct s_cell, *p_cell;
 
+typedef struct s_std_list
+{
+    p_cell head;
+} t_std_list;
 
+p_cell createCell(char);
