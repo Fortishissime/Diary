@@ -7,4 +7,4 @@ include_directories(.)
 
 add_executable(Diary
         struc.c
-        struc.h timer.h timer.c main.c)
+        struc.h timer.h timer.c main.c menu.h menu.c)
