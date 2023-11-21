@@ -1,40 +1,59 @@
 #include <stdio.h>
-#include "struc.c"
+#include <stdlib.h>
 #include <time.h>
-#include "timer.h" // Assurez-vous d'avoir un module timer fonctionnel
+#include <math.h>
+
+#include "list.h"
+
+
 int main() {
-    const int numLevels = 5;
-    const int maxValue = 100000;
 
-    // Créez une liste à niveaux
-    t_d_list multiLevelList = createMultiLevelList(numLevels, maxValue);
+    // ------ PARTIE 1
 
-    // Effectuez des recherches et mesurez le temps
-    int numSearches[] = {1000, 10000, 100000};
-    for (int i = 0; i < 3; i++) {
-        int numSearch = numSearches[i];
+    // Création d'une liste vide
+    t_list test_list = createEmptyList(5);
 
-        // Recherche standard (niveau 0)
-        startTimer();
-        for (int j = 0; j < numSearch; j++) {
-            int target = rand() % maxValue + 1;
-            t_d_cell *result = searchLevel0(multiLevelList, target);
-        }
-        stopTimer();
-        getTimeAsString();
+    printf("Partie");
+    printf("Exemple n°1 : Liste non triée\n\n");
 
-        // Recherche à plusieurs niveaux
-        startTimer();
-        for (int j = 0; j < numSearch; j++) {
-            int target = rand() % maxValue + 1;
-            t_d_cell *result = searchMultiLevel(multiLevelList, target);
-        }
-        stopTimer();
-        getTimeAsString();
+    printf("Affichage de la liste à niveaux vides :\n");
+    displayAllLevels(test_list);
+    printf("");
 
-        printf("Nombre de recherche : %d\n", numSearch);
-        printf("\n");
-    }
+    // Ajout de valeurs à la liste :
+
+    addHeadInList(&test_list, 91, 3);
+    addHeadInList(&test_list, 59, 1);
+    addHeadInList(&test_list, 59, 5);
+    addHeadInList(&test_list, 36, 3);
+    addHeadInList(&test_list, 32, 5);
+    addHeadInList(&test_list, 31, 2);
+    addHeadInList(&test_list, 25, 1);
+    addHeadInList(&test_list, 18, 4);
+
+    printf("\nAffichage de la liste avec les valeurs ajoutées :\n");
+
+    displayAllLevelsAlign(test_list);
+
+    printf("_____________________\n");
+
+    // ------ PARTIE 2
+
+
+    int n=0;
+    t_list order_list;
+    printf("Partie 2 : \n");
+    printf("Entrez une valeur de N : ");
+    scanf("%d", &n);
+    printf("\n");
+
+    order_list = createOneOnTwoList(n);
+    displayAllLevelsAlign(order_list);
+
+
+
+
+
 
     return 0;
 }

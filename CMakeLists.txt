@@ -6,5 +6,4 @@ set(CMAKE_C_STANDARD 11)
 include_directories(.)
 
 add_executable(Diary
-        struc.c
-        struc.h timer.h timer.c main.c menu.h menu.c)
+        main.c list.c list.h cell.c cell.h utils.c utils.h)
