@@ -50,6 +50,30 @@ int main() {
     order_list = createOneOnTwoList(n);
     displayAllLevelsAlign(order_list);
 
+    int val = -1;
+    int count = 1;
+
+    while(val != -9999) {
+        printf("Essai libre n°%d - Recherche de la valeur : ", count);
+        scanf("%d", &val);
+        printf("\n");
+        if(classicSearchInList(order_list, val)) {
+            printf("[CLASSICAL] Valeur %d trouvée\n", val);
+        }
+        else {
+            printf("[CLASSICAL] Valeur %d non-trouvée\n", val);
+        }
+
+        if(optimalSearchInList(order_list, val)) {
+            printf("[OPTIMAL] Valeur %d trouvée\n", val);
+        }
+        else {
+            printf("[OPTIMAL] Valeur %d non-trouvée\n", val);
+        }
+
+        printf("\n");
+        count += 1;
+    }
 
 
 

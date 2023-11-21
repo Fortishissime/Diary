@@ -151,31 +151,19 @@ int optimalSearchInList(t_list list, int val) {
     int current_level = list.max_level-1;
     p_cell current_cell = list.heads[current_level];
 
+    // -- Recherche de la cellule de départ du niveau 0 (et éventuellement la valeur)
     while(current_level > 0) {
-        while (current_cell->next[current_level] != NULL) { // Utilisation de boucles imbriquées et de l'instriction break
-            if (current_cell->value == val) {
-                return 1;
-            } else if (current_cell->value > val) {
-                current_level -= 1;
-                break;
-            } else if (current_cell->value < val) {
-                current_level -= 1;
-                current_cell = list.heads[current_level];
-                break;
-            }
-        }
-        if(current_cell->value == val) {
+        if (current_cell->value == val) {
             return 1;
-        }
-        else if (current_cell->value > val) {
-            current_level -= 1;
-        }
-        else if(current_cell->value < val) {
+        } else if (current_cell->value > val) {
             current_level -= 1;
             current_cell = list.heads[current_level];
+        } else if (current_cell->value < val) {
+            current_level -= 1;
         }
     }
 
+    // -- Recherche de la valeur (si valeur de la cellule plus élevée que celle recherchée, on arrête)
     while (current_cell != NULL) {
         if (current_cell->value == val) {
             return 1;
