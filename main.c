@@ -1,3 +1,22 @@
+/* PROJET ALGO - AGENDA
+
+ * Authors : Massil Achour AMI SAADA - Lucas VONG - Angela TCHING
+ * Version : 1.0
+
+ * Description : Projet d'agenda en trois parties. Les deux premières parties permettent d'aborder le projet tandis que
+ * la dernière est la réalisation concrète de l'application
+
+*/
+
+
+/* Description du fichier :
+ *
+ * previewParts() : Permet d'accéder à la prévisualisation des parties 1 et 2 du projet
+ * app() : Lancement de l'application finale (partie 3 du projet)
+ * main() : entry point + permet d'accéder à la partie désirée du projet
+*/
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -5,15 +24,20 @@
 
 #include "list.h"
 
+int app() {
 
-int main() {
+    return 0;
+}
+
+
+int previewParts() {
 
     // ------ PARTIE 1
 
     // Création d'une liste vide
-    t_list test_list = createEmptyList(5);
+    t_lvl_list test_list = createEmptyLvlList(5);
 
-    printf("Partie");
+    printf("Partie 1 :");
     printf("Exemple n°1 : Liste non triée\n\n");
 
     printf("Affichage de la liste à niveaux vides :\n");
@@ -22,16 +46,16 @@ int main() {
 
     // Ajout de valeurs à la liste :
 
-    addHeadInList(&test_list, 91, 3);
-    addHeadInList(&test_list, 59, 1);
-    addHeadInList(&test_list, 59, 5);
-    addHeadInList(&test_list, 36, 3);
-    addHeadInList(&test_list, 32, 5);
-    addHeadInList(&test_list, 31, 2);
-    addHeadInList(&test_list, 25, 1);
-    addHeadInList(&test_list, 18, 4);
+    addHeadInLvlList(&test_list, 91, 3);
+    addHeadInLvlList(&test_list, 59, 1);
+    addHeadInLvlList(&test_list, 59, 5);
+    addHeadInLvlList(&test_list, 36, 3);
+    addHeadInLvlList(&test_list, 32, 5);
+    addHeadInLvlList(&test_list, 31, 2);
+    addHeadInLvlList(&test_list, 25, 1);
+    addHeadInLvlList(&test_list, 18, 4);
 
-    printf("\nAffichage de la liste avec les valeurs ajoutées :\n");
+                                        printf("\nAffichage de la liste avec les valeurs ajoutées :\n");
 
     displayAllLevelsAlign(test_list);
 
@@ -41,7 +65,7 @@ int main() {
 
 
     int n=0;
-    t_list order_list;
+    t_lvl_list order_list;
     printf("Partie 2 : \n");
     printf("Entrez une valeur de N : ");
     scanf("%d", &n);
@@ -75,9 +99,25 @@ int main() {
         count += 1;
     }
 
+    return 0;
+}
 
 
 
+int main() {
+    int choice;
+    printf("PROJET ALGORITHMIQUE - Accéder à quelle partie ?\n1 : Parties 1 et 2\n2 : Partie 3\nFaites votre choix : ");
+    scanf("%d", &choice);
+
+    while(choice <= 0 || choice > 2) {
+        printf("\nErreur - Choix non conforme. Veuillez réessayer : ");
+        scanf("%d", &choice);
+    }
+
+    if(choice == 1) {
+        return previewParts();
+    }
+    else return app();
 
     return 0;
 }

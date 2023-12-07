@@ -7,5 +7,7 @@
 
 void replaceWithUnder(int);
 int *makeBoardMaker(int);
+char *scanString(void);
+
 
 #endif //DIARY_UTILS_H

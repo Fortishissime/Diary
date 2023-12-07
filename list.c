@@ -11,11 +11,12 @@
 
 // -- Création de liste
 
-t_list createEmptyList(int max_level) { // Liste partie 1
-    t_list list;
+t_lvl_list createEmptyLvlList(int max_level) { // Liste partie 1
+    t_lvl_list list;
 
     list.max_level = max_level;
-    list.heads = (p_cell*) malloc(max_level * sizeof(p_cell));
+    list.heads = (p_lvl_cell*) malloc(max_level * sizeof(p_lvl_cell));
+
 
     for(int i=0; i < max_level; i++) {
         list.heads[i] = NULL;
@@ -24,23 +25,24 @@ t_list createEmptyList(int max_level) { // Liste partie 1
     return list;
 }
 
-t_list createOneOnTwoList(int max_level) { // Liste de la partie 2
-    t_list list = createEmptyList(max_level);
+t_lvl_list createOneOnTwoList(int max_level) { // Liste de la partie 2
+    t_lvl_list list = createEmptyLvlList(max_level);
 
     int *levels = makeBoardMaker(max_level);
-    int cells_amount = pow(2, max_level) - 1;
+    int cells_amount = (int) pow(2, max_level) - 1;
 
     for(int i=cells_amount-1; i >= 0; i--) {
-        addHeadInList(&list, i+1, levels[i]+1);
+        addHeadInLvlList(&list, i+1, levels[i]+1);
     }
 
     return list;
 }
 
-// -- Gestion modification des listes
 
-void addHeadInList(p_list list, int value, int levels) {
-    p_cell cell = createCell(value, levels);
+// -- Gestion modification des listes à niveaux
+
+void addHeadInLvlList(p_lvl_list list, int value, int levels) {
+    p_lvl_cell cell = createLvlCell(value, levels);
 
     for (int i = 0; i < levels; i++) {
         if (list->heads[i] != NULL) {
@@ -50,10 +52,10 @@ void addHeadInList(p_list list, int value, int levels) {
     }
 }
 
-void addInOrder(p_list list, int value) {
+void addInOrder(p_lvl_list list, int value) {
     int level = list->max_level - 1;
 
-    p_cell newCell = createCell(value, level + 1);
+    p_lvl_cell newCell = createLvlCell(value, level + 1);
 
     for (int i = level; i >= 0; i--) {
         while (list->heads[i] != NULL && list->heads[i]->value < value) {
@@ -71,16 +73,15 @@ void addInOrder(p_list list, int value) {
     }
 }
 
-
 // -- Gestion de l'affichage
 
-void displayLevelOfList(t_list list, int level) {
+void displayLevelOfList(t_lvl_list list, int level) {
     if(level < 0 || level > list.max_level) {
         printf("Error : Bad entry for `level` argument\n");
         return ;
     }
 
-    p_cell temp = list.heads[level];
+    p_lvl_cell temp = list.heads[level];
     printf("[list head_%d @-]-->", level);
 
     while(temp != NULL) {
@@ -92,7 +93,7 @@ void displayLevelOfList(t_list list, int level) {
 }
 
 // Moins couteuse en temps mais affichagé non aligné
-void displayAllLevels(t_list list) {
+void displayAllLevels(t_lvl_list list) {
     for(int i=0; i < list.max_level; i++) {
         displayLevelOfList(list, i);
     }
@@ -101,12 +102,12 @@ void displayAllLevels(t_list list) {
 // Pour cette fonction, on compare chaque niveaux avec le niveau 0 (contenant toute les cellules)
 // - Achour
 
-void displayAllLevelsAlign(t_list list) {
+void displayAllLevelsAlign(t_lvl_list list) {
     displayLevelOfList(list, 0);
-    p_cell temp_0;
+    p_lvl_cell temp_0;
 
     for(int i=1; i < list.max_level; i++) {
-        p_cell temp = list.heads[i];
+        p_lvl_cell temp = list.heads[i];
         temp_0 = list.heads[0];
 
         printf("[list head_%d @-]", i);
@@ -129,13 +130,12 @@ void displayAllLevelsAlign(t_list list) {
         }
         printf("-->NULL\n");
     }
-    return ;
 }
 
 // Gestion des recherches :
 
-int classicSearchInList(t_list list, int val) {
-    p_cell temp = list.heads[0];
+int classicSearchInList(t_lvl_list list, int val) {
+    p_lvl_cell temp = list.heads[0];
 
     while (temp != NULL) {
         if(temp->value == val) {
@@ -147,9 +147,9 @@ int classicSearchInList(t_list list, int val) {
     return 0;
 }
 
-int optimalSearchInList(t_list list, int val) {
+int optimalSearchInList(t_lvl_list list, int val) {
     int current_level = list.max_level-1;
-    p_cell current_cell = list.heads[current_level];
+    p_lvl_cell current_cell = list.heads[current_level];
 
     // -- Recherche de la cellule de départ du niveau 0 (et éventuellement la valeur)
     while(current_level > 0) {
