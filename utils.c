@@ -48,6 +48,7 @@ char *scanString() {
 
     char string[MAX_LENGTH];
     char *dynamic_string;
+    fflush(stdin);
     scanf("%s", string);
 
     while(string[size] != '\0') { // Détermination de la longueur utilisé (on inclus le caractère '\0')
@@ -62,4 +63,8 @@ char *scanString() {
     }
 
     return dynamic_string;
+}
+
+void clearConsole() {
+    printf("\e[1;1H\e[2J");
 }

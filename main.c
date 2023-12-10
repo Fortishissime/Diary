@@ -9,25 +9,35 @@
 */
 
 
-/* Description du fichier :
+/* Description des fichiers :
+ * app.c : Equivalent du "main", écrit pour pouvoir associer un header
+ * utils.c : Recueil de fonctions globalement utile à l'ensemble du projet
+ * list.c / cell.c : Parties 1 et 2 du projet
+ * rdv.c : Partie 3 du projet. S'occupe de gérer les structures des rendez-vous
+ * diary_e.c : Partie 3 du projet. S'occupe de gérer les structures d'entrées de l'agenda et des listes / cellules associées
  *
- * previewParts() : Permet d'accéder à la prévisualisation des parties 1 et 2 du projet
- * app() : Lancement de l'application finale (partie 3 du projet)
- * main() : entry point + permet d'accéder à la partie désirée du projet
 */
 
 
 #include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
-#include <math.h>
 
+#include "app.h"
 #include "list.h"
 
+
+
+
 int app() {
+    t_entries_list list = createEmptyEntriesList(4);
+    p_entries_list list_p = &list;
+
+    menu(list_p);
+    
+
 
     return 0;
 }
+
 
 
 int previewParts() {
@@ -55,7 +65,7 @@ int previewParts() {
     addHeadInLvlList(&test_list, 25, 1);
     addHeadInLvlList(&test_list, 18, 4);
 
-                                        printf("\nAffichage de la liste avec les valeurs ajoutées :\n");
+    printf("\nAffichage de la liste avec les valeurs ajoutées :\n");
 
     displayAllLevelsAlign(test_list);
 
@@ -68,7 +78,7 @@ int previewParts() {
     t_lvl_list order_list;
     printf("Partie 2 : \n");
     printf("Entrez une valeur de N : ");
-    scanf("%d", &n);
+    scanf(" %d", &n);
     printf("\n");
 
     order_list = createOneOnTwoList(n);

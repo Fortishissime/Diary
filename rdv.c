@@ -14,11 +14,21 @@ t_rdv_list createEmptyRdvList() {
 
 p_rdv createRdv() {
     p_rdv rdv = (p_rdv) malloc(sizeof (t_rdv));
+
+    rdv->date = (p_date) malloc(sizeof (t_date));
+    rdv->time = (p_time) malloc(sizeof (t_time));
+    rdv->duration = (p_time) malloc((sizeof (t_time)));
+
     return rdv;
 }
 
 p_rdv_cell createRdvCell(p_rdv rdv) {
+    p_rdv_cell cell = (p_rdv_cell) malloc (sizeof(t_rdv_cell));
 
+    cell->rdv = rdv;
+    cell->next = NULL;
+
+    return cell;
 }
 
 void showRdv(p_rdv rdv) {

@@ -51,9 +51,6 @@ typedef struct s_rdv_list {
 
 // -- Functions - List of rendezvous
 
-p_date createDate(int, int, int);
-p_time createTime(int, int);
-
 t_rdv_list createEmptyRdvList();
 
 p_rdv createRdv();

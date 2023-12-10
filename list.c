@@ -73,6 +73,34 @@ void addInOrder(p_lvl_list list, int value) {
     }
 }
 
+void insertCellAtlist(p_lvl_cell cel, p_lvl_list liste){
+    int lvl=cel->levels;
+    p_lvl_cell tmp;
+    p_lvl_cell tmp1;
+    p_lvl_cell prev;
+
+    for (int i=0; i < lvl; i++){
+        if (liste->heads[i] == NULL || liste->heads[i]->value >= cel->value){
+            cel->next[i] = liste->heads[i];
+            liste->heads[i] = cel;
+        }
+        else{
+            tmp = liste->heads[i];
+            prev = tmp;
+            tmp1 = tmp->next[i];
+            while (tmp->next[i] != NULL && tmp1->value < cel->value){
+                tmp = tmp->next[i];
+                tmp1 = tmp->next[i];
+            }
+            tmp->next[i] = cel;
+            cel->next[i] = tmp1;
+
+        }
+
+    }
+}
+
+
 // -- Gestion de l'affichage
 
 void displayLevelOfList(t_lvl_list list, int level) {

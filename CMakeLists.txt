@@ -7,5 +7,7 @@ include_directories(.)
 
 add_executable(Diary
         main.c list.c list.h cell.c cell.h utils.c utils.h
-        rdv.h
+        app.c
+        rdv.c
+        diary_e.c
 )

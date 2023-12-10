@@ -33,6 +33,11 @@ typedef struct s_entries_list {
     p_entries_cell *head;
 } t_entries_list, *p_entries_list;
 
+typedef struct s_entries_board {
+    int size;
+    p_entries_cell *board;
+} t_entries_board, *p_entries_board;
+
 // ----- Fonctions -----
 
 
@@ -41,7 +46,9 @@ p_entry createEntry(); //
 
 p_entries_cell createEntryCell(int, p_entry);
 t_entries_list createEmptyEntriesList(int);
-p_entry findContactInEntriesList(char *);
+p_entries_board findContactInEntriesList(p_entries_list);
+
+
 
 
 void addEntryInList(p_entries_list, p_entry);
